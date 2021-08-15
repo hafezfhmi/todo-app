@@ -1,0 +1,15 @@
+.header {
+  position: relative;
+
+  &__bg {
+    background-image: url('../img/bg-desktop-light.jpg');
+    background-size: cover;
+    height: 45vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  z-index: -99;
+}
