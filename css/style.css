@@ -51,7 +51,8 @@ html {
     color: #9394a5;
     font-size: 1.4rem;
     font-weight: 700;
-    padding: 0 2rem; }
+    padding: 0 2rem;
+    transition: all 0.2s; }
     .filter__btn--side:hover {
       color: #484b6a; }
   .filter__btn--center {
@@ -100,29 +101,53 @@ html {
   .list__item {
     width: 100%;
     height: 6.5rem;
-    font-size: 1.8rem;
-    color: #484b6a;
+    position: relative;
     list-style-type: none;
     cursor: pointer;
     border-bottom: 2px solid #e4e5f1;
     display: flex;
     align-items: center; }
-  .list__item::before {
-    content: '\025EF';
-    font-size: 2.6rem;
-    color: #e4e5f1;
-    margin: 0 2rem; }
-  .list__item::after {
-    content: url(../img/icon-cross.svg);
-    margin-left: auto;
-    margin-right: 2rem;
+  .list__circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 2rem;
+    background-color: #e4e5f1;
+    border-radius: 50%;
+    position: absolute; }
+    .list__circle::before {
+      content: '';
+      width: 2.05em;
+      height: 2.1rem;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: #fff; }
+    .list__circle:hover {
+      background-image: linear-gradient(#57ddff, #c058f3); }
+  .list__circle--active {
+    background-image: linear-gradient(#57ddff, #c058f3); }
+    .list__circle--active::before {
+      background-image: linear-gradient(#57ddff, #c058f3); }
+    .list__circle--active::after {
+      content: url(../img/icon-check.svg);
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%; }
+  .list__desc {
+    font-size: 1.8rem;
+    color: #484b6a;
+    padding: 0 6.8rem;
+    width: 100%; }
+  .list__cross {
+    margin: 0 2rem;
+    position: absolute;
+    right: 0;
     visibility: hidden; }
-  .list__item:hover::before {
-    background-image: linear-gradient(#57ddff, #c058f3);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; }
-  .list__item:hover::after {
+  .list__item:hover > .list__cross {
     visibility: visible; }
 
 .todo {
