@@ -1,24 +1,81 @@
 // For drag and drop, try to use this library
 // https://interactjs.io/
+// https://github.com/SortableJS/Sortable
 
 // =================================
-// check button functionality
-let btn = document.getElementsByClassName('list__item');
+// add list button functionality
 
-// use spread operator and forEach to apply onclick event targeting this (current) element
-[...btn].forEach((curr) => {
-  curr.onclick = function () {
-    this.children[0].classList.toggle('list__circle--active');
-    this.children[1].classList.toggle('list__desc--line-through');
-  };
+function addListEvent() {
+  // =================================
+  // check button functionality
+
+  let btn = document.getElementsByClassName('list__item');
+
+  // use spread operator and forEach to apply onclick event targeting this (current) element
+  [...btn].forEach((curr) => {
+    curr.onclick = function () {
+      this.children[0].classList.toggle('list__circle--active');
+      this.children[1].classList.toggle('list__desc--line-through');
+    };
+  });
+
+  // =================================
+  // delete button functionality
+
+  let del = document.getElementsByClassName('list__cross');
+
+  [...del].forEach((curr) => {
+    curr.onclick = function () {
+      this.parentElement.remove();
+    };
+  });
+}
+
+// ===============================
+// render list functionality
+
+let list = [];
+
+let template = document.getElementsByTagName('template')[0];
+
+function renderList() {
+  // clear element inside list__container whenever we run renderList
+  document.getElementsByClassName('list__container')[0].innerHTML = '';
+
+  list.forEach((curr) => {
+    // .content copy the template element content and cloneNode clone the element
+    let currTemplate = template.content.cloneNode(true);
+    currTemplate.querySelector('.list__desc').innerText = curr.name;
+    document
+      .getElementsByClassName('list__container')[0]
+      .appendChild(currTemplate);
+  });
+  // add event
+  addListEvent();
+}
+
+// ===============================
+// Add list functionality
+
+let form = document.getElementsByClassName('form')[0];
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let input = document.getElementsByClassName('form__input')[0];
+  let currItem = {};
+
+  currItem.id = Date.now().toString();
+  currItem.name = input.value;
+  currItem.completed = false;
+
+  list.push(currItem);
+  input.value = '';
+
+  renderList();
 });
 
-// =================================
-// delete button functionality
-let del = document.getElementsByClassName('list__cross');
+// ===============================
+// Initial render
 
-[...del].forEach((curr) => {
-  curr.onclick = function () {
-    this.parentElement.remove();
-  };
-});
+renderList();

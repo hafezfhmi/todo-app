@@ -23,7 +23,7 @@
     <main class="todo">
       <h1 class="todo__title heading-primary">TODO</h1>
 
-      <form action="#" class="form">
+      <form action="#filter--active" class="form">
         <label for="input" class="form__circle">&bigcirc;</label>
         <input
           type="text"
@@ -36,43 +36,27 @@
       </form>
 
       <section class="list">
-        <ul class="list__container">
-          <div class="list__item">
-            <span class="list__circle"></span>
-            <li class="list__desc">Take a jog in the morning</li>
-            <img
-              src="img/icon-cross.svg"
-              alt="Delete icon"
-              class="list__cross"
-            />
-          </div>
-          <div class="list__item">
-            <span class="list__circle"></span>
-            <li class="list__desc">Study for exam</li>
-            <img
-              src="img/icon-cross.svg"
-              alt="Delete icon"
-              class="list__cross"
-            />
-          </div>
-          <div class="list__item">
-            <span class="list__circle"></span>
-            <li class="list__desc">Go to sleep at 10</li>
-            <img
-              src="img/icon-cross.svg"
-              alt="Delete icon"
-              class="list__cross"
-            />
-          </div>
-        </ul>
+        <ul class="list__container"></ul>
       </section>
 
       <secton class="filter">
         <button class="filter__btn--side">5 items left</button>
         <div class="filter__sort">
-          <a class="filter__btn--center">All</a>
-          <a class="filter__btn--center">Active</a>
-          <a class="filter__btn--center">Completed</a>
+          <a
+            href="#filter--active"
+            id="filter--active"
+            class="filter__btn--center"
+            >Active</a
+          >
+          <a href="#filter--all" id="filter--all" class="filter__btn--center"
+            >All</a
+          >
+          <a
+            href="#filter--completed"
+            id="filter--completed"
+            class="filter__btn--center"
+            >Completed</a
+          >
         </div>
         <button class="filter__btn--side">Clear completed</button>
       </secton>
@@ -87,6 +71,14 @@
         >Frontend Mentor</a
       >. Coded by <a href="#" class="footer__link">Hafez Fahmi</a>.
     </footer>
+
+    <template>
+      <div class="list__item">
+        <span class="list__circle"></span>
+        <li class="list__desc"></li>
+        <img src="img/icon-cross.svg" alt="Delete icon" class="list__cross" />
+      </div>
+    </template>
 
     <script src="script.js" defer></script>
   </body>
