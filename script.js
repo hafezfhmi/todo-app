@@ -1,7 +1,8 @@
 // For drag and drop, try to use this library
 // https://interactjs.io/
 
-// get circle button
+// =================================
+// check button functionality
 let btn = document.getElementsByClassName('list__item');
 
 // use spread operator and forEach to apply onclick event targeting this (current) element
@@ -12,6 +13,8 @@ let btn = document.getElementsByClassName('list__item');
   };
 });
 
+// =================================
+// delete button functionality
 let del = document.getElementsByClassName('list__cross');
 
 [...del].forEach((curr) => {
