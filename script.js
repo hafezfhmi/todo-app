@@ -41,8 +41,16 @@ function addListEvent() {
 // ===============================
 // Load list from local storage
 function load() {
+  // get JSON object that we store from local storage
   let myListStore = myStorage.getItem(myStorageKey);
+  // turn it into normal object
   myListStore = JSON.parse(myListStore);
+
+  if (myListStore == null) {
+    list = [];
+    return;
+  }
+
   list = myListStore;
 }
 
@@ -66,6 +74,7 @@ function renderList() {
       .getElementsByClassName('list__container')[0]
       .appendChild(currTemplate);
   });
+
   // add event
   addListEvent();
 }
@@ -74,7 +83,9 @@ function renderList() {
 // Save list to local storage
 
 function save() {
+  // we turn our list to JSON object
   let myListStore = JSON.stringify(list);
+  // store the JSON object into local storage with its key
   myStorage.setItem(myStorageKey, myListStore);
 }
 
