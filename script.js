@@ -3,6 +3,13 @@
 // https://github.com/SortableJS/Sortable
 
 // =================================
+// Global variables
+
+let myStorage = window.localStorage;
+let myStorageKey = 'todoList';
+let list = [];
+
+// =================================
 // add list button functionality
 
 function addListEvent() {
@@ -32,15 +39,24 @@ function addListEvent() {
 }
 
 // ===============================
-// render list functionality
+// Load list from local storage
+function load() {
+  let myListStore = myStorage.getItem(myStorageKey);
+  myListStore = JSON.parse(myListStore);
+  list = myListStore;
+}
 
-let list = [];
+// ===============================
+// render list functionality
 
 let template = document.getElementsByTagName('template')[0];
 
 function renderList() {
   // clear element inside list__container whenever we run renderList
   document.getElementsByClassName('list__container')[0].innerHTML = '';
+
+  // load list from local storage
+  load();
 
   list.forEach((curr) => {
     // .content copy the template element content and cloneNode clone the element
@@ -55,7 +71,15 @@ function renderList() {
 }
 
 // ===============================
-// Add list functionality
+// Save list to local storage
+
+function save() {
+  let myListStore = JSON.stringify(list);
+  myStorage.setItem(myStorageKey, myListStore);
+}
+
+// ===============================
+// Submit list functionality
 
 let form = document.getElementsByClassName('form')[0];
 
@@ -72,6 +96,7 @@ form.addEventListener('submit', (event) => {
   list.push(currItem);
   input.value = '';
 
+  save();
   renderList();
 });
 
