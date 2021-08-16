@@ -72,6 +72,11 @@
     width: 100%;
   }
 
+  &__desc--line-through {
+    color: $light-grayish-blue-1;
+    text-decoration: line-through;
+  }
+
   &__cross {
     margin: 0 2rem;
     position: absolute;

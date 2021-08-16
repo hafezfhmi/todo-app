@@ -142,6 +142,9 @@ html {
     color: #484b6a;
     padding: 0 6.8rem;
     width: 100%; }
+  .list__desc--line-through {
+    color: #d2d3db;
+    text-decoration: line-through; }
   .list__cross {
     margin: 0 2rem;
     position: absolute;
