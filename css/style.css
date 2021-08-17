@@ -229,3 +229,6 @@ html {
     position: absolute;
     left: 0;
     top: 0; }
+    @media screen and (orientation: portrait) {
+      .header__bg {
+        height: 19vh; } }

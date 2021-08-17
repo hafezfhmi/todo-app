@@ -1,5 +1,6 @@
 .header {
   position: relative;
+  z-index: -99;
 
   &__bg {
     background-image: url('../img/bg-desktop-light.jpg');
@@ -9,7 +10,9 @@
     position: absolute;
     left: 0;
     top: 0;
-  }
 
-  z-index: -99;
+    @include respond(port) {
+      height: 19vh;
+    }
+  }
 }

@@ -31,4 +31,10 @@
       @content;
     }
   }
+
+  @if $breakpoint == port {
+    @media screen and (orientation: portrait) {
+      @content;
+    }
+  }
 }
