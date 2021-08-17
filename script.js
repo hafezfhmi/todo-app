@@ -238,6 +238,15 @@ function calculateRemaining() {
   )[0].innerText = `${itemLeft} items left`;
 }
 
+(function clearCompleted() {
+  let clear = document.getElementsByClassName('filter__btn--side')[1];
+  clear.onclick = function () {
+    list = list.filter((curr) => curr.completed == false);
+    save();
+    renderList();
+  };
+})();
+
 // ===============================
 // Initial render
 
