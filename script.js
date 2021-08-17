@@ -138,12 +138,18 @@ function renderList() {
   list.forEach((curr) => {
     // .content copy the template element content and cloneNode clone the element
     let currTemplate = template.content.cloneNode(true);
+    let currCircle = currTemplate.querySelector('.list__circle');
     let currList = currTemplate.querySelector('.list__desc');
 
     if (filter == 'all') {
       currList.innerText = curr.name;
       // give it id to identify it during deletion process
       currList.id = curr.id;
+      if (curr.completed == true) {
+        currCircle.classList.add('list__circle--active');
+        currList.classList.add('list__desc--line-through');
+      }
+
       document
         .getElementsByClassName('list__container')[0]
         .appendChild(currTemplate);
@@ -158,6 +164,10 @@ function renderList() {
       currList.innerText = curr.name;
       // give it id to identify it during deletion process
       currList.id = curr.id;
+
+      currCircle.classList.add('list__circle--active');
+      currList.classList.add('list__desc--line-through');
+
       document
         .getElementsByClassName('list__container')[0]
         .appendChild(currTemplate);
