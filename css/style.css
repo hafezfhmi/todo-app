@@ -63,8 +63,8 @@ html {
     transition: all 0.2s; }
     .filter__btn--center:hover {
       color: #484b6a; }
-  .filter__btn--dark {
-    color: #484b6a; }
+  .filter__btn--current {
+    color: #3a7bfd; }
 
 .form {
   margin-top: 4rem;

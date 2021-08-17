@@ -63,11 +63,11 @@ function addListEvent() {
 // Remove current filter button
 
 function removeFilterState() {
-  let button = document.getElementsByClassName('filter__btn--dark')[0];
+  let button = document.getElementsByClassName('filter__btn--current')[0];
   if (button == null) {
     return;
   }
-  button.classList.remove('filter__btn--dark');
+  button.classList.remove('filter__btn--current');
 }
 
 // ===============================
@@ -76,15 +76,15 @@ function removeFilterState() {
 function currentFilter(filter) {
   if (filter == 'all') {
     removeFilterState();
-    document.getElementById('all').classList.add('filter__btn--dark');
+    document.getElementById('all').classList.add('filter__btn--current');
   }
   if (filter == 'active') {
     removeFilterState();
-    document.getElementById('active').classList.add('filter__btn--dark');
+    document.getElementById('active').classList.add('filter__btn--current');
   }
   if (filter == 'completed') {
     removeFilterState();
-    document.getElementById('completed').classList.add('filter__btn--dark');
+    document.getElementById('completed').classList.add('filter__btn--current');
   }
 }
 
