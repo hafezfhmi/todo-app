@@ -25,6 +25,7 @@ function toggleComplete(currId) {
   });
 
   save();
+  renderList();
 }
 
 function addListEvent() {
@@ -117,13 +118,9 @@ function load() {
   if (myListStore == null) {
     list = [];
     return;
-  } else if (filter == 'all') {
-    list = myListStore;
-  } else if (filter == 'active') {
-    list = myListStore.filter((curr) => curr.completed == false);
-  } else if (filter == 'completed') {
-    list = myListStore.filter((curr) => curr.completed == true);
   }
+
+  list = myListStore;
 }
 
 // ===============================
@@ -142,12 +139,29 @@ function renderList() {
     // .content copy the template element content and cloneNode clone the element
     let currTemplate = template.content.cloneNode(true);
     let currList = currTemplate.querySelector('.list__desc');
-    currList.innerText = curr.name;
-    // give it id to identify it during deletion process
-    currList.id = curr.id;
-    document
-      .getElementsByClassName('list__container')[0]
-      .appendChild(currTemplate);
+
+    if (filter == 'all') {
+      currList.innerText = curr.name;
+      // give it id to identify it during deletion process
+      currList.id = curr.id;
+      document
+        .getElementsByClassName('list__container')[0]
+        .appendChild(currTemplate);
+    } else if (filter == 'active' && curr.completed == false) {
+      currList.innerText = curr.name;
+      // give it id to identify it during deletion process
+      currList.id = curr.id;
+      document
+        .getElementsByClassName('list__container')[0]
+        .appendChild(currTemplate);
+    } else if (filter == 'completed' && curr.completed == true) {
+      currList.innerText = curr.name;
+      // give it id to identify it during deletion process
+      currList.id = curr.id;
+      document
+        .getElementsByClassName('list__container')[0]
+        .appendChild(currTemplate);
+    }
   });
 
   // highlight filter button
