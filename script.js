@@ -8,9 +8,24 @@
 let myStorage = window.localStorage;
 let myStorageKey = 'todoList';
 let list = [];
+let filter = 'all';
 
 // =================================
 // add list button functionality
+
+// ---------------------------------
+// toggle completed state
+function toggleComplete(currId) {
+  list.forEach((curr) => {
+    if (curr.id == currId) {
+      curr.completed == true
+        ? (curr.completed = false)
+        : (curr.completed = true);
+    }
+  });
+
+  save();
+}
 
 function addListEvent() {
   // =================================
@@ -21,8 +36,11 @@ function addListEvent() {
   // use spread operator and forEach to apply onclick event targeting this (current) element
   [...btn].forEach((curr) => {
     curr.onclick = function () {
-      this.children[0].classList.toggle('list__circle--active');
-      this.children[1].classList.toggle('list__desc--line-through');
+      curr.children[0].classList.toggle('list__circle--active');
+      curr.children[1].classList.toggle('list__desc--line-through');
+
+      let listId = curr.children[1].id;
+      toggleComplete(listId);
     };
   });
 
@@ -52,9 +70,13 @@ function load() {
   if (myListStore == null) {
     list = [];
     return;
+  } else if (filter == 'all') {
+    list = myListStore;
+  } else if (filter == 'active') {
+    list = myListStore.filter((curr) => curr.completed == false);
+  } else if (filter == 'completed') {
+    list = myListStore.filter((curr) => curr.completed == true);
   }
-
-  list = myListStore;
 }
 
 // ===============================
