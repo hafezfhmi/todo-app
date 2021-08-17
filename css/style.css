@@ -142,7 +142,8 @@ html {
     font-size: 1.8rem;
     color: #484b6a;
     padding: 0 6.8rem;
-    width: 100%; }
+    width: 100%;
+    word-wrap: break-word; }
   .list__desc--line-through {
     color: #d2d3db;
     text-decoration: line-through; }

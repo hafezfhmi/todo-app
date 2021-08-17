@@ -174,6 +174,8 @@ function renderList() {
     }
   });
 
+  calculateRemaining();
+
   // highlight filter button
   currentFilter(filter);
 
@@ -200,6 +202,12 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   let input = document.getElementsByClassName('form__input')[0];
+
+  // return if there's no valid character
+  if (/\w/.test(input.value) == false || input.value == '') {
+    return;
+  }
+
   let currItem = {};
 
   currItem.id = Date.now().toString();
@@ -212,6 +220,23 @@ form.addEventListener('submit', (event) => {
   save();
   renderList();
 });
+
+// ===============================
+// Show how many items left
+
+function calculateRemaining() {
+  let itemLeft = 0;
+
+  list.forEach((curr) => {
+    if (curr.completed == false) {
+      itemLeft++;
+    }
+  });
+
+  document.getElementsByClassName(
+    'filter__btn--side'
+  )[0].innerText = `${itemLeft} items left`;
+}
 
 // ===============================
 // Initial render
