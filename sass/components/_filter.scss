@@ -8,9 +8,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  // position: relative;
 
   &__sort {
     display: flex;
+    // margin-top: 400px;
+    // position: absolute;
+    // width: 100%;
+    // justify-content: center;
   }
 
   &__btn--side {

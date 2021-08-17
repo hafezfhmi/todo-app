@@ -1,7 +1,9 @@
 .todo {
   width: 51.5%;
+  max-width: 800px;
+  box-sizing: border-box;
   margin: 0 auto;
-  padding: 8rem;
+  padding: 8rem 0;
 
   &__title {
     letter-spacing: 1.4rem;

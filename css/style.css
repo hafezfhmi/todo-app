@@ -1,3 +1,10 @@
+/*
+0 - 750px:      Phone
+750 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+1200 - 1800px:  Normal style
+1800px + :      Big desktop
+*/
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 *,
 *::before,
@@ -8,6 +15,15 @@
 
 html {
   font-size: 62.5%; }
+  @media only screen and (max-width: 1200px) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 900px) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 1800px) {
+    html {
+      font-size: 75%; } }
 
 body {
   box-sizing: border-box;
@@ -167,8 +183,10 @@ html {
 
 .todo {
   width: 51.5%;
+  max-width: 800px;
+  box-sizing: border-box;
   margin: 0 auto;
-  padding: 8rem; }
+  padding: 8rem 0; }
   .todo__title {
     letter-spacing: 1.4rem;
     text-transform: uppercase; }
