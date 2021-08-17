@@ -32,8 +32,11 @@ function addListEvent() {
   let del = document.getElementsByClassName('list__cross');
 
   [...del].forEach((curr) => {
+    let listId = curr.previousElementSibling.id;
     curr.onclick = function () {
+      list = list.filter((curr) => curr.id != listId);
       this.parentElement.remove();
+      save();
     };
   });
 }
@@ -69,7 +72,10 @@ function renderList() {
   list.forEach((curr) => {
     // .content copy the template element content and cloneNode clone the element
     let currTemplate = template.content.cloneNode(true);
-    currTemplate.querySelector('.list__desc').innerText = curr.name;
+    let currList = currTemplate.querySelector('.list__desc');
+    currList.innerText = curr.name;
+    // give it id to identify it during deletion process
+    currList.id = curr.id;
     document
       .getElementsByClassName('list__container')[0]
       .appendChild(currTemplate);
