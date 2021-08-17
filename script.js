@@ -174,6 +174,17 @@ function renderList() {
     }
   });
 
+  let listAmount = document.getElementsByClassName('list__item')[0];
+  if (!listAmount) {
+    let emptyTemplate = document.createElement('div');
+    emptyTemplate.classList.add('list__item--empty');
+    emptyTemplate.innerText = '0 items available';
+
+    document
+      .getElementsByClassName('list__container')[0]
+      .appendChild(emptyTemplate);
+  }
+
   calculateRemaining();
 
   // highlight filter button
