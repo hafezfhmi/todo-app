@@ -27,20 +27,17 @@
 
   &__btn--center {
     color: $dark-grayish-blue-1;
-    text-decoration: none;
     font-size: 1.6rem;
     font-weight: 700;
-    outline: none;
     padding: 0 1rem;
-    cursor: pointer;
     transition: all 0.2s;
-
-    &:target {
-      color: $very-dark-grayish-blue-1;
-    }
 
     &:hover {
       color: $very-dark-grayish-blue-1;
     }
+  }
+
+  &__btn--dark {
+    color: $very-dark-grayish-blue-1;
   }
 }

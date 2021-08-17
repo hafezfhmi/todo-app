@@ -60,6 +60,53 @@ function addListEvent() {
 }
 
 // ===============================
+// Remove current filter button
+
+function removeFilterState() {
+  let button = document.getElementsByClassName('filter__btn--dark')[0];
+  if (button == null) {
+    return;
+  }
+  button.classList.remove('filter__btn--dark');
+}
+
+// ===============================
+// Current filter button
+
+function currentFilter(filter) {
+  if (filter == 'all') {
+    removeFilterState();
+    document.getElementById('all').classList.add('filter__btn--dark');
+  }
+  if (filter == 'active') {
+    removeFilterState();
+    document.getElementById('active').classList.add('filter__btn--dark');
+  }
+  if (filter == 'completed') {
+    removeFilterState();
+    document.getElementById('completed').classList.add('filter__btn--dark');
+  }
+}
+
+// ===============================
+// Added filter button event to change filter
+
+(function filterEvent() {
+  document.getElementById('all').addEventListener('click', () => {
+    filter = 'all';
+    renderList();
+  });
+  document.getElementById('active').addEventListener('click', () => {
+    filter = 'active';
+    renderList();
+  });
+  document.getElementById('completed').addEventListener('click', () => {
+    filter = 'completed';
+    renderList();
+  });
+})();
+
+// ===============================
 // Load list from local storage
 function load() {
   // get JSON object that we store from local storage
@@ -102,6 +149,9 @@ function renderList() {
       .getElementsByClassName('list__container')[0]
       .appendChild(currTemplate);
   });
+
+  // highlight filter button
+  currentFilter(filter);
 
   // add event
   addListEvent();
