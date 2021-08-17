@@ -1,6 +1,6 @@
 // MEDIA QUERIES
 /*
-0 - 750px:      Phone
+0 - 600px:      Phone
 750 - 900px:    Tablet portrait
 900 - 1200px:   Tablet landscape
 1200 - 1800px:  Normal style
@@ -9,7 +9,7 @@
 
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 600px) {
       @content;
     }
   }

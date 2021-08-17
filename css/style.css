@@ -1,5 +1,5 @@
 /*
-0 - 750px:      Phone
+0 - 600px:      Phone
 750 - 900px:    Tablet portrait
 900 - 1200px:   Tablet landscape
 1200 - 1800px:  Normal style
@@ -61,8 +61,20 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center; }
+  @media only screen and (max-width: 600px) {
+    .filter {
+      position: relative; } }
   .filter__sort {
     display: flex; }
+    @media only screen and (max-width: 600px) {
+      .filter__sort {
+        width: 100%;
+        height: 5rem;
+        background-color: #fff;
+        border-radius: 6px;
+        position: absolute;
+        transform: translateY(7rem);
+        justify-content: center; } }
   .filter__btn--side {
     color: #9394a5;
     font-size: 1.4rem;
@@ -187,6 +199,15 @@ html {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 8rem 0; }
+  @media only screen and (max-width: 1200px) {
+    .todo {
+      width: 65%; } }
+  @media only screen and (max-width: 900px) {
+    .todo {
+      width: 75%; } }
+  @media only screen and (max-width: 600px) {
+    .todo {
+      width: 85%; } }
   .todo__title {
     letter-spacing: 1.4rem;
     text-transform: uppercase; }
