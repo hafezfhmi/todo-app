@@ -20,6 +20,14 @@ html {
   @include respond(big-desktop) {
     font-size: 75%; // 1rem - 12px
   }
+
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body {
