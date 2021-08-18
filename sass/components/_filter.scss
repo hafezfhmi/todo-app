@@ -31,7 +31,7 @@
   &__btn--side {
     color: $dark-grayish-blue-1;
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 400;
     padding: 0 2rem;
     transition: all 0.2s;
 
@@ -42,7 +42,7 @@
 
   &__btn--center {
     color: $dark-grayish-blue-1;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
     padding: 0 1rem;
     transition: all 0.2s;
@@ -54,5 +54,38 @@
 
   &__btn--current {
     color: $bright-blue;
+  }
+}
+
+//  MODIFIER FOR DARK MODE
+.dark {
+  .filter {
+    background-color: $very-dark-desaturated-blue;
+
+    &__sort {
+      @include respond(phone) {
+        background-color: $very-dark-desaturated-blue;
+      }
+    }
+
+    &__btn--side {
+      color: $very-dark-grayish-blue-2;
+
+      &:hover {
+        color: $light-grayish-blue-2;
+      }
+    }
+
+    &__btn--center {
+      color: $very-dark-grayish-blue-2;
+
+      &:hover {
+        color: $light-grayish-blue-2;
+      }
+    }
+
+    &__btn--current {
+      color: $bright-blue;
+    }
   }
 }

@@ -42,8 +42,8 @@
 
     &::before {
       content: '';
-      width: 2.05em;
-      height: 2.1rem;
+      width: 2.2em;
+      height: 2.2rem;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -84,6 +84,7 @@
     font-size: 1.8rem;
     color: $very-dark-grayish-blue-1;
     padding: 0 6.8rem;
+    height: 100%;
     width: 100%;
     word-wrap: break-word;
   }
@@ -91,6 +92,10 @@
   &__desc--line-through {
     color: $light-grayish-blue-1;
     text-decoration: line-through;
+  }
+
+  &__item:hover > &__desc--line-through {
+    color: $very-dark-grayish-blue-1;
   }
 
   &__cross {
@@ -102,5 +107,40 @@
 
   &__item:hover > &__cross {
     visibility: visible;
+  }
+}
+
+//  MODIFIER FOR DARK MODE
+.dark {
+  .list {
+    background-color: $very-dark-desaturated-blue;
+
+    &__item {
+      border-bottom: 1.5px solid $very-dark-grayish-blue-3;
+    }
+
+    &__item--empty {
+      color: $light-grayish-blue-2;
+    }
+
+    &__circle {
+      background-color: $very-dark-grayish-blue-3;
+
+      &::before {
+        background-color: $very-dark-desaturated-blue;
+      }
+    }
+
+    &__desc {
+      color: $light-grayish-blue-2;
+    }
+
+    &__item:hover .list__desc {
+      color: $light-grayish-blue-2-hover;
+    }
+
+    &__desc--line-through {
+      color: $very-dark-grayish-blue-2;
+    }
   }
 }

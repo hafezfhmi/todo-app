@@ -35,7 +35,15 @@
     </header>
 
     <main class="todo">
-      <h1 class="todo__title heading-primary">TODO</h1>
+      <div class="todo__header">
+        <h1 class="todo__title heading-primary">TODO</h1>
+        <img
+          src="img/icon-moon.svg"
+          alt="Dark mode button"
+          class="todo__button"
+          data-mode="light"
+        />
+      </div>
 
       <form action="#filter--active" class="form">
         <label for="input" class="form__circle">&bigcirc;</label>
@@ -60,7 +68,7 @@
           <button id="active" class="filter__btn--center">Active</button>
           <button id="completed" class="filter__btn--center">Completed</button>
         </div>
-        <button class="filter__btn--side">Clear completed</button>
+        <button class="filter__btn--side">Clear Completed</button>
       </secton>
     </main>
 

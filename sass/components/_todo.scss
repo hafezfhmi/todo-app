@@ -1,6 +1,6 @@
 .todo {
   width: 51.5%;
-  max-width: 800px;
+  max-width: 540px;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 8rem 0;
@@ -17,8 +17,21 @@
     width: 85%;
   }
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__title {
     letter-spacing: 1.4rem;
     text-transform: uppercase;
+  }
+
+  &__button {
+    height: 100%;
+    width: auto;
+    transition: all 0.2s;
+    opacity: 1;
+    cursor: pointer;
   }
 }

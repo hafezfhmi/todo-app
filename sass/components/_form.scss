@@ -1,5 +1,5 @@
 .form {
-  margin-top: 4rem;
+  margin-top: 2rem;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: $shadow-around;
@@ -32,6 +32,20 @@
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+//  MODIFIER FOR DARK MODE
+.dark {
+  .form {
+    &__circle {
+      color: $very-dark-grayish-blue-3;
+    }
+
+    &__input {
+      background-color: $very-dark-desaturated-blue;
+      color: $light-grayish-blue-2;
     }
   }
 }

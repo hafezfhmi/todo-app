@@ -33,6 +33,7 @@ html {
 body {
   box-sizing: border-box;
   background-color: $very-light-gray;
+  transition: all 0.2s;
 }
 
 // change the caret color ( | )
@@ -52,4 +53,9 @@ input[type='reset'] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+//  MODIFIER FOR DARK MODE
+.dark {
+  background-color: $very-dark-blue;
 }

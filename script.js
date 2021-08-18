@@ -262,3 +262,25 @@ function calculateRemaining() {
 // Initial render
 
 renderList();
+
+// ===============================
+// ===============================
+// ===============================
+// ===============================
+// ===============================
+// ===============================
+// Toggle dark/light mode functionality
+let DLbutton = document.getElementsByClassName('todo__button')[0];
+
+DLbutton.onclick = () => {
+  let mode = DLbutton.getAttribute('data-mode');
+  if (mode == 'night') {
+    DLbutton.setAttribute('data-mode', 'light');
+    DLbutton.src = 'img/icon-moon.svg';
+    document.body.classList.remove('dark');
+  } else {
+    DLbutton.setAttribute('data-mode', 'night');
+    DLbutton.src = 'img/icon-sun.svg';
+    document.body.classList.add('dark');
+  }
+};
