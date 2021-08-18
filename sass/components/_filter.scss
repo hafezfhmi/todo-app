@@ -47,8 +47,12 @@
     padding: 0 1rem;
     transition: all 0.2s;
 
-    &:hover {
-      color: $very-dark-grayish-blue-1;
+    // Only target mouse and touchpad device
+    // Source: https://ferie.medium.com/detect-a-touch-device-with-only-css-9f8e30fa1134
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $very-dark-grayish-blue-1;
+      }
     }
   }
 

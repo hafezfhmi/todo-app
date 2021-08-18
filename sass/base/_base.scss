@@ -53,6 +53,7 @@ input[type='reset'] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 //  MODIFIER FOR DARK MODE

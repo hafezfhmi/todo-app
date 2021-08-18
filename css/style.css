@@ -47,7 +47,8 @@ input[type='reset'] {
   padding: 0;
   font: inherit;
   cursor: pointer;
-  outline: inherit; }
+  outline: inherit;
+  -webkit-tap-highlight-color: transparent; }
 
 .dark {
   background-color: #161722; }
@@ -97,8 +98,9 @@ html {
     font-weight: 700;
     padding: 0 1rem;
     transition: all 0.2s; }
-    .filter__btn--center:hover {
-      color: #484b6a; }
+    @media (hover: hover) and (pointer: fine) {
+      .filter__btn--center:hover {
+        color: #484b6a; } }
   .filter__btn--current {
     color: #3a7bfd; }
 
