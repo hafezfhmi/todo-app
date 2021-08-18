@@ -61,6 +61,9 @@ html {
   color: #fafafa;
   margin-bottom: 2rem; }
 
+.u-width--extra {
+  width: 12rem; }
+
 .filter {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
