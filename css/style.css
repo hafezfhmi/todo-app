@@ -115,8 +115,9 @@ html {
       color: #cacde8; }
   .dark .filter__btn--center {
     color: #4d5066; }
-    .dark .filter__btn--center:hover {
-      color: #cacde8; }
+    @media (hover: hover) and (pointer: fine) {
+      .dark .filter__btn--center:hover {
+        color: #cacde8; } }
   .dark .filter__btn--current {
     color: #3a7bfd; }
 

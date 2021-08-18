@@ -83,8 +83,10 @@
     &__btn--center {
       color: $very-dark-grayish-blue-2;
 
-      &:hover {
-        color: $light-grayish-blue-2;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          color: $light-grayish-blue-2;
+        }
       }
     }
 
