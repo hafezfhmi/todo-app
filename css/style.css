@@ -233,7 +233,8 @@ html {
   .dark .list__item {
     border-bottom: 1.5px solid #393a4c; }
   .dark .list__item--empty {
-    color: #cacde8; }
+    color: #cacde8;
+    border-bottom: 1.5px solid #393a4c; }
   .dark .list__circle {
     background-color: #393a4c; }
     .dark .list__circle::before {
