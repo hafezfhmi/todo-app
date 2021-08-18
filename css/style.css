@@ -300,3 +300,12 @@ html {
     @media screen and (orientation: portrait) {
       .header__bg {
         height: 19vh; } }
+    @media only screen and (max-width: 600px) {
+      .header__bg {
+        background-image: url("../img/bg-mobile-light.jpg"); } }
+
+.dark .header__bg {
+  background-image: url("../img/bg-desktop-dark.jpg"); }
+  @media only screen and (max-width: 600px) {
+    .dark .header__bg {
+      background-image: url("../img/bg-mobile-dark.jpg"); } }

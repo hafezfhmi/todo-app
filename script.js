@@ -275,19 +275,24 @@ let DLbutton = document.getElementsByClassName('todo__button')[0];
 DLbutton.onclick = () => {
   let mode = DLbutton.getAttribute('data-mode');
 
+  // Button animation
   DLbutton.style.transform = 'scale(0.6)';
   DLbutton.style.opacity = '0.5';
+
   setTimeout(() => {
     DLbutton.style.transform = 'scale(1)';
     DLbutton.style.opacity = '1';
 
+    // Change mode functionality
     if (mode == 'night') {
       DLbutton.setAttribute('data-mode', 'light');
       DLbutton.src = 'img/icon-moon.svg';
+
       document.body.classList.remove('dark');
     } else {
       DLbutton.setAttribute('data-mode', 'night');
       DLbutton.src = 'img/icon-sun.svg';
+
       document.body.classList.add('dark');
     }
   }, 100);

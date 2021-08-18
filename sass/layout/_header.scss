@@ -14,5 +14,21 @@
     @include respond(port) {
       height: 19vh;
     }
+
+    @include respond(phone) {
+      background-image: url('../img/bg-mobile-light.jpg');
+    }
+  }
+}
+
+.dark {
+  .header {
+    &__bg {
+      background-image: url('../img/bg-desktop-dark.jpg');
+
+      @include respond(phone) {
+        background-image: url('../img/bg-mobile-dark.jpg');
+      }
+    }
   }
 }
