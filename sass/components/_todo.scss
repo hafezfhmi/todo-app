@@ -33,5 +33,6 @@
     transition: all 0.2s;
     opacity: 1;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 }

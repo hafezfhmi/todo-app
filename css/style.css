@@ -275,7 +275,8 @@ html {
     width: auto;
     transition: all 0.2s;
     opacity: 1;
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; }
 
 .footer {
   font-size: 11px;
