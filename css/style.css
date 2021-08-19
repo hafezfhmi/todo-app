@@ -201,8 +201,9 @@ html {
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background-color: #fff; }
-    .list__circle:hover {
-      background-image: linear-gradient(#57ddff, #c058f3); }
+    @media (hover: hover) and (pointer: fine) {
+      .list__circle:hover {
+        background-image: linear-gradient(#57ddff, #c058f3); } }
   .list__circle--active {
     background-image: linear-gradient(#57ddff, #c058f3); }
     .list__circle--active::before {
@@ -224,15 +225,20 @@ html {
   .list__desc--line-through {
     color: #d2d3db;
     text-decoration: line-through; }
-  .list__item:hover > .list__desc--line-through {
-    color: #484b6a; }
+  @media (hover: hover) and (pointer: fine) {
+    .list__item:hover > .list__desc--line-through {
+      color: #484b6a; } }
   .list__cross {
     margin: 0 2rem;
     position: absolute;
     right: 0;
     visibility: hidden; }
-  .list__item:hover > .list__cross {
-    visibility: visible; }
+  @media (hover: none) {
+    .list__cross {
+      visibility: visible; } }
+  @media (hover: hover) and (pointer: fine) {
+    .list__item:hover > .list__cross {
+      visibility: visible; } }
 
 .dark .list {
   background-color: #25273c; }
@@ -247,8 +253,9 @@ html {
       background-color: #25273c; }
   .dark .list__desc {
     color: #cacde8; }
-  .dark .list__item:hover .list__desc {
-    color: #e4e5f1; }
+  @media (hover: hover) and (pointer: fine) {
+    .dark .list__item:hover .list__desc {
+      color: #e4e5f1; } }
   .dark .list__desc--line-through {
     color: #4d5066; }
 

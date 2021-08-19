@@ -52,11 +52,13 @@
       background-color: #fff;
     }
 
-    &:hover {
-      background-image: linear-gradient(
-        hsl(192, 100%, 67%),
-        hsl(280, 87%, 65%)
-      );
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-image: linear-gradient(
+          hsl(192, 100%, 67%),
+          hsl(280, 87%, 65%)
+        );
+      }
     }
   }
 
@@ -94,8 +96,10 @@
     text-decoration: line-through;
   }
 
-  &__item:hover > &__desc--line-through {
-    color: $very-dark-grayish-blue-1;
+  @media (hover: hover) and (pointer: fine) {
+    &__item:hover > &__desc--line-through {
+      color: $very-dark-grayish-blue-1;
+    }
   }
 
   &__cross {
@@ -105,8 +109,18 @@
     visibility: hidden;
   }
 
-  &__item:hover > &__cross {
-    visibility: visible;
+  // make cross visible on no hover device
+  @media (hover: none) {
+    &__cross {
+      visibility: visible;
+    }
+  }
+
+  //on mouse device, make cross appear on hover
+  @media (hover: hover) and (pointer: fine) {
+    &__item:hover > &__cross {
+      visibility: visible;
+    }
   }
 }
 
@@ -136,8 +150,10 @@
       color: $light-grayish-blue-2;
     }
 
-    &__item:hover .list__desc {
-      color: $light-grayish-blue-2-hover;
+    @media (hover: hover) and (pointer: fine) {
+      &__item:hover .list__desc {
+        color: $light-grayish-blue-2-hover;
+      }
     }
 
     &__desc--line-through {
