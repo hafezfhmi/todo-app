@@ -9,6 +9,7 @@ let myStorage = window.localStorage;
 let myStorageKey = 'todoList';
 let list = [];
 let filter = 'all';
+let sortItem;
 
 // =================================
 // add list button functionality
@@ -40,7 +41,7 @@ function addListEvent() {
       curr.children[0].classList.toggle('list__circle--active');
       curr.children[1].classList.toggle('list__desc--line-through');
 
-      let listId = curr.children[1].id;
+      let listId = curr.getAttribute('data-id');
       toggleComplete(listId);
     };
   });
@@ -51,11 +52,11 @@ function addListEvent() {
   let del = document.getElementsByClassName('list__cross');
 
   [...del].forEach((curr) => {
-    let listId = curr.previousElementSibling.id;
+    let listId = curr.parentElement.getAttribute('data-id');
     curr.onclick = function () {
       list = list.filter((curr) => curr.id != listId);
-      this.parentElement.remove();
       save();
+      renderList();
     };
   });
 }
@@ -138,13 +139,15 @@ function renderList() {
   list.forEach((curr) => {
     // .content copy the template element content and cloneNode clone the element
     let currTemplate = template.content.cloneNode(true);
+    let listItem = currTemplate.querySelector('.list__item');
+
+    // give it id to identify it during deletion process
+    listItem.setAttribute('data-id', curr.id);
     let currCircle = currTemplate.querySelector('.list__circle');
     let currList = currTemplate.querySelector('.list__desc');
+    currList.innerText = curr.name;
 
     if (filter == 'all') {
-      currList.innerText = curr.name;
-      // give it id to identify it during deletion process
-      currList.id = curr.id;
       if (curr.completed == true) {
         currCircle.classList.add('list__circle--active');
         currList.classList.add('list__desc--line-through');
@@ -154,17 +157,10 @@ function renderList() {
         .getElementsByClassName('list__container')[0]
         .appendChild(currTemplate);
     } else if (filter == 'active' && curr.completed == false) {
-      currList.innerText = curr.name;
-      // give it id to identify it during deletion process
-      currList.id = curr.id;
       document
         .getElementsByClassName('list__container')[0]
         .appendChild(currTemplate);
     } else if (filter == 'completed' && curr.completed == true) {
-      currList.innerText = curr.name;
-      // give it id to identify it during deletion process
-      currList.id = curr.id;
-
       currCircle.classList.add('list__circle--active');
       currList.classList.add('list__desc--line-through');
 
@@ -174,16 +170,7 @@ function renderList() {
     }
   });
 
-  let listAmount = document.getElementsByClassName('list__item')[0];
-  if (!listAmount) {
-    let emptyTemplate = document.createElement('div');
-    emptyTemplate.classList.add('list__item--empty');
-    emptyTemplate.innerText = '0 items available';
-
-    document
-      .getElementsByClassName('list__container')[0]
-      .appendChild(emptyTemplate);
-  }
+  checkEmptyList();
 
   calculateRemaining();
 
@@ -192,6 +179,25 @@ function renderList() {
 
   // add event
   addListEvent();
+
+  // add sorting functionality
+  sortable();
+}
+
+// ===============================
+// Check if list is empty
+function checkEmptyList() {
+  let listAmount = document.getElementsByClassName('list__item')[0];
+  // console.log(listAmount);
+  if (listAmount == undefined) {
+    let emptyTemplate = document.createElement('div');
+    emptyTemplate.classList.add('list__item--empty');
+    emptyTemplate.innerText = '0 items available';
+
+    document
+      .getElementsByClassName('list__container')[0]
+      .appendChild(emptyTemplate);
+  }
 }
 
 // ===============================
@@ -229,7 +235,33 @@ form.addEventListener('submit', (event) => {
   input.value = '';
 
   save();
-  renderList();
+
+  //render new input
+  if (filter == 'all' || filter == 'active') {
+    //remove empty placeholder
+    let emptyPlaceholder =
+      document.getElementsByClassName('list__item--empty')[0];
+    if (emptyPlaceholder != undefined) {
+      emptyPlaceholder.remove();
+    }
+
+    let currTemplate = template.content.cloneNode(true);
+    let currList = currTemplate.querySelector('.list__desc');
+    let listItem = currTemplate.querySelector('.list__item');
+
+    // give it id to identify it during deletion process
+    listItem.setAttribute('data-id', currItem.id);
+    currList.innerText = currItem.name;
+    // give it id to identify it during deletion process
+    currList.id = currItem.id;
+
+    document
+      .getElementsByClassName('list__container')[0]
+      .appendChild(currTemplate);
+
+    addListEvent();
+    sortItem.save();
+  }
 });
 
 // ===============================
@@ -305,7 +337,26 @@ DLbutton.onclick = () => {
 // ===============================
 // ===============================
 // Sortable
-const container = document.getElementsByClassName('list__container')[0];
-Sortable.create(container, {
-  animation: 250,
-});
+
+function sortable() {
+  if (sortItem != undefined) {
+    sortItem.destroy();
+    console.log('Sortitem destroyed');
+  }
+  const container = document.getElementsByClassName('list__container')[0];
+  sortItem = Sortable.create(container, {
+    group: 'sortable',
+    animation: 250,
+    store: {
+      get: function (sortable) {
+        var order = localStorage.getItem(sortable.options.group.name);
+        return order ? order.split('|') : [];
+      },
+
+      set: function (sortable) {
+        var order = sortable.toArray();
+        localStorage.setItem(sortable.options.group.name, order.join('|'));
+      },
+    },
+  });
+}
