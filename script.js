@@ -40,6 +40,10 @@ function deletionAnimation(item) {
       item.style.height = 0;
       item.style.padding = 0;
     }, 100);
+  } else {
+    item.onclick = function () {
+      return false;
+    };
   }
 
   setTimeout(() => {
@@ -64,12 +68,13 @@ function addListEvent() {
 
       if (filter === 'active' || filter === 'completed') {
         deletionAnimation(curr);
+
+        setTimeout(() => {
+          checkEmptyList();
+        }, 200);
       }
 
       calculateRemaining();
-      setTimeout(() => {
-        checkEmptyList();
-      }, 200);
     };
   });
 
@@ -81,14 +86,29 @@ function addListEvent() {
   [...del].forEach((curr) => {
     let listId = curr.parentElement.parentElement.getAttribute('data-id');
 
-    curr.onclick = function () {
+    curr.onclick = function (event) {
+      event.stopPropagation();
+
+      // disable onclick after clicked
+      curr.onclick = function () {
+        console.log('Tee');
+        return false;
+      };
+
       list = list.filter((curr) => curr.id != listId);
       save();
       let storageOrder = localStorage.getItem('sortable');
       storageOrder = storageOrder.split('|');
       storageOrder = storageOrder.filter((curr) => curr != listId);
       localStorage.setItem('sortable', storageOrder.join('|'));
+
       deletionAnimation(curr.parentElement);
+
+      calculateRemaining();
+
+      setTimeout(() => {
+        checkEmptyList();
+      }, 200);
     };
   });
 }
@@ -229,6 +249,8 @@ function checkEmptyList() {
       .getElementsByClassName('list__container')[0]
       .appendChild(emptyTemplate);
   }
+
+  console.log(' i run');
 }
 
 // ===============================
