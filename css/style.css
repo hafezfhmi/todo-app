@@ -33,7 +33,9 @@ body {
   box-sizing: border-box;
   background-color: #fafafa; }
 
-* {
+* :not(.list__sortable-wrapper),
+* ::before,
+* ::after {
   transition: all 0.2s; }
 
 input,
@@ -196,8 +198,8 @@ html {
     position: absolute; }
     .list__circle::before {
       content: '';
-      width: 2.2em;
-      height: 2.2rem;
+      width: 2.15rem;
+      height: 2.15rem;
       position: absolute;
       left: 50%;
       top: 50%;

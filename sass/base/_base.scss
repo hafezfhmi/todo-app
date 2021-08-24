@@ -35,8 +35,10 @@ body {
   background-color: $very-light-gray;
 }
 
-// for dark/light mode transition
-* {
+// for dark/light mode transition, exclude .list__sortable-wrapper (for sortable animation)
+* :not(.list__sortable-wrapper),
+* ::before,
+* ::after {
   transition: all 0.2s;
 }
 
