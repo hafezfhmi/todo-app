@@ -347,10 +347,15 @@ renderList();
 // ===============================
 // Toggle dark/light mode functionality
 let DLbutton = document.getElementsByClassName('todo__button')[0];
+let darkLightMode = localStorage.getItem('darkLightMode');
+
+if (darkLightMode == undefined) {
+  localStorage.setItem('darkLightMode', 'light');
+} else if (darkLightMode == 'night') {
+  document.body.classList.add('dark');
+}
 
 DLbutton.onclick = () => {
-  let mode = DLbutton.getAttribute('data-mode');
-
   // Button animation
   DLbutton.style.transform = 'scale(0.6)';
   DLbutton.style.opacity = '0.5';
@@ -360,13 +365,15 @@ DLbutton.onclick = () => {
     DLbutton.style.opacity = '1';
 
     // Change mode functionality
-    if (mode == 'night') {
-      DLbutton.setAttribute('data-mode', 'light');
+    if (darkLightMode === 'night') {
+      localStorage.setItem('darkLightMode', 'light');
+      darkLightMode = 'light';
       DLbutton.src = 'img/icon-moon.svg';
 
       document.body.classList.remove('dark');
     } else {
-      DLbutton.setAttribute('data-mode', 'night');
+      localStorage.setItem('darkLightMode', 'night');
+      darkLightMode = 'night';
       DLbutton.src = 'img/icon-sun.svg';
 
       document.body.classList.add('dark');

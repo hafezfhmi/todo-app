@@ -33,6 +33,10 @@ html {
 body {
   box-sizing: border-box;
   background-color: $very-light-gray;
+}
+
+// for dark/light mode transition
+* {
   transition: all 0.2s;
 }
 

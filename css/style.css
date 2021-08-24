@@ -31,7 +31,9 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: #fafafa;
+  background-color: #fafafa; }
+
+* {
   transition: all 0.2s; }
 
 input,
