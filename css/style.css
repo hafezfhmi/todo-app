@@ -172,6 +172,7 @@ html {
     list-style-type: none;
     cursor: pointer;
     border-bottom: 2px solid #e4e5f1;
+    transition: all 0.1s;
     display: flex;
     align-items: center; }
   .list__item--empty {

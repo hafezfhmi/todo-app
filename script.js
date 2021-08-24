@@ -26,7 +26,25 @@ function toggleComplete(currId) {
   });
 
   save();
-  renderList();
+  // renderList();
+}
+
+function deletionAnimation(item) {
+  item.style.opacity = 0;
+
+  let elementCount = document.getElementsByClassName('list__sortable-wrapper');
+
+  if (elementCount.length != 1) {
+    setTimeout(() => {
+      item.style.minHeight = 0;
+      item.style.height = 0;
+      item.style.padding = 0;
+    }, 100);
+  }
+
+  setTimeout(() => {
+    item.parentElement.remove();
+  }, 200);
 }
 
 function addListEvent() {
@@ -41,8 +59,17 @@ function addListEvent() {
       curr.children[0].classList.toggle('list__circle--active');
       curr.children[1].classList.toggle('list__desc--line-through');
 
-      let listId = curr.getAttribute('data-id');
+      let listId = curr.parentElement.getAttribute('data-id');
       toggleComplete(listId);
+
+      if (filter === 'active' || filter === 'completed') {
+        deletionAnimation(curr);
+      }
+
+      calculateRemaining();
+      setTimeout(() => {
+        checkEmptyList();
+      }, 200);
     };
   });
 
@@ -52,7 +79,8 @@ function addListEvent() {
   let del = document.getElementsByClassName('list__cross');
 
   [...del].forEach((curr) => {
-    let listId = curr.parentElement.getAttribute('data-id');
+    let listId = curr.parentElement.parentElement.getAttribute('data-id');
+
     curr.onclick = function () {
       list = list.filter((curr) => curr.id != listId);
       save();
@@ -60,7 +88,7 @@ function addListEvent() {
       storageOrder = storageOrder.split('|');
       storageOrder = storageOrder.filter((curr) => curr != listId);
       localStorage.setItem('sortable', storageOrder.join('|'));
-      renderList();
+      deletionAnimation(curr.parentElement);
     };
   });
 }
@@ -143,7 +171,7 @@ function renderList() {
   list.forEach((curr) => {
     // .content copy the template element content and cloneNode clone the element
     let currTemplate = template.content.cloneNode(true);
-    let listItem = currTemplate.querySelector('.list__item');
+    let listItem = currTemplate.querySelector('.list__sortable-wrapper');
 
     // give it id to identify it during deletion process
     listItem.setAttribute('data-id', curr.id);
@@ -192,7 +220,6 @@ function renderList() {
 // Check if list is empty
 function checkEmptyList() {
   let listAmount = document.getElementsByClassName('list__item')[0];
-  // console.log(listAmount);
   if (listAmount == undefined) {
     let emptyTemplate = document.createElement('div');
     emptyTemplate.classList.add('list__item--empty');
@@ -251,7 +278,7 @@ form.addEventListener('submit', (event) => {
 
     let currTemplate = template.content.cloneNode(true);
     let currList = currTemplate.querySelector('.list__desc');
-    let listItem = currTemplate.querySelector('.list__item');
+    let listItem = currTemplate.querySelector('.list__sortable-wrapper');
 
     // give it id to identify it during deletion process
     listItem.setAttribute('data-id', currItem.id);
@@ -277,6 +304,8 @@ form.addEventListener('submit', (event) => {
     order.push(currItem.id);
     localStorage.setItem('sortable', order.join('|'));
   }
+
+  calculateRemaining();
 });
 
 // ===============================
@@ -356,7 +385,6 @@ DLbutton.onclick = () => {
 function sortable() {
   if (sortItem != undefined) {
     sortItem.destroy();
-    console.log('Sortitem destroyed');
   }
   const container = document.getElementsByClassName('list__container')[0];
   sortItem = Sortable.create(container, {
@@ -370,13 +398,10 @@ function sortable() {
 
       set: function (sortable) {
         if (filter == 'active' || filter == 'completed') {
-          // console.log(x);
           let orderAll = localStorage.getItem(sortable.options.group.name);
           orderAll = orderAll ? orderAll.split('|') : [];
-          // console.log(`Order all: ${orderAll}`);
 
           var order = sortable.toArray();
-          // console.log(`Original order: ${order}`);
 
           let orderIndex = -1;
 
@@ -388,8 +413,6 @@ function sortable() {
               return curr;
             }
           });
-
-          // console.log(`Order ALL = ${orderAll}`);
 
           localStorage.setItem(sortable.options.group.name, orderAll.join('|'));
         } else {

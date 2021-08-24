@@ -14,6 +14,8 @@
     cursor: pointer;
     border-bottom: 2px solid $very-light-grayish-blue;
 
+    transition: all 0.1s;
+
     display: flex;
     align-items: center;
   }
