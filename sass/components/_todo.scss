@@ -35,4 +35,24 @@
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
+
+  &__text {
+    font-size: 1.35rem;
+    margin-top: 5rem;
+    text-align: center;
+    color: $dark-grayish-blue-1;
+
+    @include respond(phone) {
+      margin-top: 10rem;
+    }
+  }
+}
+
+//  MODIFIER FOR DARK MODE
+.dark {
+  .todo {
+    &__text {
+      color: $very-dark-grayish-blue-2;
+    }
+  }
 }
