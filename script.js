@@ -84,7 +84,7 @@ function addListEvent() {
     curr.onclick = function () {
       list = list.filter((curr) => curr.id != listId);
       save();
-      storageOrder = localStorage.getItem('sortable');
+      let storageOrder = localStorage.getItem('sortable');
       storageOrder = storageOrder.split('|');
       storageOrder = storageOrder.filter((curr) => curr != listId);
       localStorage.setItem('sortable', storageOrder.join('|'));
@@ -330,6 +330,22 @@ function calculateRemaining() {
   clear.onclick = function () {
     list = list.filter((curr) => curr.completed == false);
     save();
+
+    list = list.map((curr) => {
+      return curr.id;
+    });
+
+    let storageOrder = localStorage.getItem('sortable');
+    storageOrder = storageOrder.split('|');
+    storageOrder = storageOrder.filter((curr) => {
+      if (list.indexOf(curr) == -1) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    localStorage.setItem('sortable', storageOrder.join('|'));
+
     renderList();
   };
 })();
